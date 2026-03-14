@@ -163,6 +163,45 @@ function scoreCocktail(c) {
   return Math.min(100, Math.max(0, score));
 }
 
+// === HELPER: Estimate alcohol % and recommend best awamori brands ===
+function estimateAlcoholPct(awamoriMl, totalVolMl, awamoriDegree) {
+  if (totalVolMl <= 0) totalVolMl = awamoriMl * 2; // rough estimate if total unknown
+  return (awamoriMl * awamoriDegree) / (totalVolMl * 100) * 100;
+}
+
+function recommendAwamoriForCocktail(c, totalVol) {
+  const candidates = AWAMORI_BRANDS.filter(a => a.distill === c.distill);
+
+  // Score each brand for this cocktail based on user's strength preference
+  const scored = candidates.map(a => {
+    let brandScore = 0;
+    const estAlc = estimateAlcoholPct(c.awamoriMl, totalVol || c.awamoriMl * 2, a.degree);
+
+    if (state.strength === "弱い") {
+      // Prefer lower degree awamori for lighter cocktails
+      if (a.degree <= 25) brandScore += 20;
+      else if (a.degree <= 30) brandScore += 10;
+      else brandScore -= 5;
+      if (estAlc < 10) brandScore += 5;
+    } else if (state.strength === "強い") {
+      // Prefer higher degree awamori
+      if (a.degree >= 35) brandScore += 20;
+      else if (a.degree >= 30) brandScore += 15;
+      else brandScore += 5;
+      if (estAlc > 15) brandScore += 5;
+    } else {
+      // Medium - prefer 30 degree
+      if (a.degree === 30) brandScore += 15;
+      else brandScore += 10;
+    }
+
+    return {...a, brandScore, estAlc: estAlc.toFixed(1)};
+  });
+
+  scored.sort((a, b) => b.brandScore - a.brandScore);
+  return scored.slice(0, 3);
+}
+
 // === HELPER: Calculate total volume ===
 function calcTotalVolume(ingredientsStr) {
   let total = 0;
@@ -248,13 +287,14 @@ function recommend() {
         ${c.recipe ? `<div class="recipe-title">HOW TO MAKE</div><ol class="recipe-steps">${c.recipe.split(/[。;]/).filter(s => s.trim()).map(s => `<li>${s.trim()}</li>`).join('')}</ol>` : ''}
         <div class="recipe-title" style="margin-top:16px">RECOMMENDED AWAMORI</div>
         <div class="cocktail-awamori-suggest">
-          ${AWAMORI_BRANDS.filter(a => a.distill === c.distill).slice(0, 3).map(a =>
+          ${recommendAwamoriForCocktail(c, totalVol).map(a =>
             `<div class="suggest-item-detail">
               <div class="suggest-header">
                 <span class="suggest-brand">${a.url ? `<a href="${a.url}" target="_blank" rel="noopener">${a.brand}</a>` : a.brand}</span>
                 <span class="suggest-maker">${a.maker} / ${a.degree}度</span>
               </div>
               <div class="suggest-note">${a.note}</div>
+              <div class="suggest-alc">この泡盛で作ると推定アルコール度数: 約${a.estAlc}%</div>
               ${a.kodawari ? `<div class="suggest-kodawari">${a.kodawari}</div>` : ''}
             </div>`
           ).join('')}

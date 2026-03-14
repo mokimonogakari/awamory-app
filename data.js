@@ -88,16 +88,16 @@ const AWAMORI_BRANDS = [
   {brand:"残波プレミアム 5年古酒",maker:"比嘉酒造",distill:"常圧蒸留",degree:35,note:"100%甕貯蔵5年古酒",url:"https://zanpa.okinawa/",kodawari:"1948年読谷村創業。「女性や泡盛を知らない方でも楽しめる泡盛」を目指して開発。沖縄県内外で広く親しまれる代表銘柄。"},
 ];
 
-// === COCKTAIL IMAGES (Unsplash free) ===
+// === COCKTAIL IMAGES (Pexels free) ===
 const COCKTAIL_IMAGES = {
   short: [
-    "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=300&fit=crop&auto=format",
-    "https://images.unsplash.com/photo-1544320324-b3235e43b5cc?w=400&h=300&fit=crop&auto=format",
-    "https://images.unsplash.com/photo-1661002529725-5e55e8a58923?w=400&h=300&fit=crop&auto=format",
+    "https://images.pexels.com/photos/2531195/pexels-photo-2531195.jpeg?w=400&h=300&fit=crop",
+    "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?w=400&h=300&fit=crop",
+    "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?w=400&h=300&fit=crop",
   ],
   long: [
-    "https://images.unsplash.com/photo-1587223962217-f4e4f399eca4?w=400&h=300&fit=crop&auto=format",
-    "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=400&h=300&fit=crop&auto=format",
-    "https://images.unsplash.com/photo-1745076437587-82cbb1e78ac3?w=400&h=300&fit=crop&auto=format",
+    "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?w=400&h=300&fit=crop",
+    "https://images.pexels.com/photos/5947019/pexels-photo-5947019.jpeg?w=400&h=300&fit=crop",
+    "https://images.pexels.com/photos/4667027/pexels-photo-4667027.jpeg?w=400&h=300&fit=crop",
   ],
 };
