@@ -9,13 +9,13 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0a0f;--bg2:#12121a;--bg3:#1a1a25;
-  --gold:#c9a96e;--gold-light:#e8d5a8;--gold-dim:#8a7040;
-  --coral:#d4735e;--teal:#5e9b8a;--cream:#f0e6d3;
-  --text:#e8e0d4;--text-dim:#8a8078;--text-bright:#fff;
-  --card:#161620;--card-hover:#1e1e2c;
-  --border:rgba(201,169,110,.15);
-  --shadow:0 8px 32px rgba(0,0,0,.4);
+  --bg:#ffffff;--bg2:#f7f5f2;--bg3:#eee9e3;
+  --gold:#9a7b4f;--gold-light:#7a5c33;--gold-dim:#b09670;
+  --coral:#c4604a;--teal:#3d7d6a;--cream:#2a2520;
+  --text:#3a3530;--text-dim:#8a8078;--text-bright:#1a1510;
+  --card:#faf8f5;--card-hover:#f2efe9;
+  --border:rgba(154,123,79,.18);
+  --shadow:0 8px 32px rgba(0,0,0,.06);
   --radius:12px;
 }
 html{scroll-behavior:smooth}
@@ -30,9 +30,8 @@ body{
 body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 10%,rgba(201,169,110,.06),transparent),
-    radial-gradient(ellipse 60% 80% at 80% 90%,rgba(94,155,138,.04),transparent),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+    radial-gradient(ellipse 80% 60% at 20% 10%,rgba(154,123,79,.04),transparent),
+    radial-gradient(ellipse 60% 80% at 80% 90%,rgba(61,125,106,.03),transparent);
 }
 
 .container{max-width:900px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
@@ -97,8 +96,8 @@ section{margin-bottom:56px}
 .toggle-btn:hover{border-color:var(--gold-dim);color:var(--text)}
 .toggle-btn.active{
   border-color:var(--gold);color:var(--gold-light);
-  background:rgba(201,169,110,.08);
-  box-shadow:0 0 20px rgba(201,169,110,.08);
+  background:rgba(154,123,79,.08);
+  box-shadow:0 0 20px rgba(154,123,79,.06);
 }
 
 /* Food grid */
@@ -112,7 +111,7 @@ section{margin-bottom:56px}
 .food-chip:hover{border-color:var(--gold-dim);color:var(--text)}
 .food-chip.active{
   border-color:var(--teal);color:var(--teal);
-  background:rgba(94,155,138,.08);
+  background:rgba(61,125,106,.06);
 }
 .food-chip .taste-bar{
   display:block;margin-top:6px;height:3px;border-radius:2px;
@@ -155,12 +154,12 @@ input[type=range]::-webkit-slider-thumb{
 }
 #recommend-btn::before{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(201,169,110,.1),transparent);
+  background:linear-gradient(135deg,rgba(154,123,79,.08),transparent);
   opacity:0;transition:opacity .4s;
 }
 #recommend-btn:hover{
-  background:rgba(201,169,110,.08);
-  box-shadow:0 0 40px rgba(201,169,110,.12);
+  background:rgba(154,123,79,.08);
+  box-shadow:0 0 40px rgba(154,123,79,.1);
   transform:translateY(-2px);
 }
 #recommend-btn:hover::before{opacity:1}
@@ -193,6 +192,7 @@ input[type=range]::-webkit-slider-thumb{
   background:linear-gradient(90deg,var(--gold),var(--teal),var(--coral));
   opacity:0;transition:opacity .4s;
 }
+.cocktail-card{border:1px solid var(--border)}
 .cocktail-card:hover{
   border-color:rgba(201,169,110,.25);
   box-shadow:var(--shadow);transform:translateY(-2px);
@@ -200,7 +200,7 @@ input[type=range]::-webkit-slider-thumb{
 .cocktail-card:hover::before{opacity:1}
 .cocktail-card .card-number{
   font-family:'Playfair Display',serif;font-size:3rem;
-  color:rgba(201,169,110,.08);position:absolute;top:16px;right:24px;
+  color:rgba(154,123,79,.1);position:absolute;top:16px;right:24px;
   font-weight:700;
 }
 .cocktail-name{
@@ -231,9 +231,9 @@ input[type=range]::-webkit-slider-thumb{
   letter-spacing:.05em;
 }
 .meta-tag.type{background:rgba(201,169,110,.1);color:var(--gold)}
-.meta-tag.taste{background:rgba(94,155,138,.1);color:var(--teal)}
-.meta-tag.glass{background:rgba(212,115,94,.1);color:var(--coral)}
-.meta-tag.award{background:rgba(201,169,110,.15);color:var(--gold-light);border:1px solid var(--gold-dim)}
+.meta-tag.taste{background:rgba(61,125,106,.08);color:var(--teal)}
+.meta-tag.glass{background:rgba(196,96,74,.08);color:var(--coral)}
+.meta-tag.award{background:rgba(154,123,79,.12);color:var(--gold-light);border:1px solid var(--gold-dim)}
 .meta-tag.distill{background:rgba(94,155,138,.12);color:var(--teal)}
 
 .recipe-section{
@@ -246,7 +246,7 @@ input[type=range]::-webkit-slider-thumb{
 }
 .ingredient-list{list-style:none;margin-bottom:20px}
 .ingredient-list li{
-  padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);
+  padding:6px 0;border-bottom:1px solid rgba(0,0,0,.05);
   font-size:.85rem;display:flex;justify-content:space-between;
 }
 .ingredient-list li:last-child{border:none}
@@ -272,7 +272,7 @@ input[type=range]::-webkit-slider-thumb{
 }
 .awamori-card{
   display:flex;gap:20px;padding:16px 0;
-  border-bottom:1px solid rgba(255,255,255,.04);
+  border-bottom:1px solid rgba(0,0,0,.05);
   align-items:flex-start;
 }
 .awamori-card:last-child{border:none}
@@ -283,7 +283,7 @@ input[type=range]::-webkit-slider-thumb{
 .awamori-tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
 .awamori-tag{
   padding:2px 10px;border-radius:100px;font-size:.68rem;
-  background:rgba(201,169,110,.08);color:var(--gold-dim);
+  background:rgba(154,123,79,.06);color:var(--gold-dim);
 }
 
 /* Pairing tip */
