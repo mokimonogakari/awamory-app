@@ -6,6 +6,8 @@
 
 **デモ**: https://mokimonogakari.github.io/awamory-app/
 
+本アプリは [Awamori open data 3/14](https://ool.connpass.com/event/382912/) ハッカソンで制作されました。
+
 ## 技術スタック
 
 - **フロントエンド**: HTML / CSS / Vanilla JavaScript（フレームワーク不使用）
