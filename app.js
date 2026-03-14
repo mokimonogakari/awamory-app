@@ -1,3 +1,10 @@
+// === SANITIZE ===
+function esc(str) {
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
 // === STATE ===
 let state = {
   strength: "普通",
@@ -16,7 +23,7 @@ function init() {
     const btn = document.createElement('button');
     btn.className = 'food-chip';
     btn.dataset.value = f.name;
-    btn.innerHTML = `${f.name}<span class="taste-bar"><span class="taste-bar-fill" style="width:${f.intensity*20}%"></span></span>`;
+    btn.innerHTML = `${esc(f.name)}<span class="taste-bar"><span class="taste-bar-fill" style="width:${f.intensity*20}%"></span></span>`;
     btn.addEventListener('click', () => {
       btn.classList.toggle('active');
       if (state.foods.includes(f.name)) {
@@ -244,11 +251,11 @@ function recommend() {
     const totalVol = calcTotalVolume(c.ingredients);
 
     const tags = [];
-    if (c.category) tags.push(`<span class="meta-tag type">${c.category.replace('カクテル;','')}</span>`);
-    if (c.taste) tags.push(`<span class="meta-tag taste">${c.taste}</span>`);
-    if (c.glass) tags.push(`<span class="meta-tag glass">${c.glass}</span>`);
-    if (c.distill) tags.push(`<span class="meta-tag distill">${c.distill}</span>`);
-    if (c.award) tags.push(`<span class="meta-tag award">🏆 ${c.award}</span>`);
+    if (c.category) tags.push(`<span class="meta-tag type">${esc(c.category.replace('カクテル;',''))}</span>`);
+    if (c.taste) tags.push(`<span class="meta-tag taste">${esc(c.taste)}</span>`);
+    if (c.glass) tags.push(`<span class="meta-tag glass">${esc(c.glass)}</span>`);
+    if (c.distill) tags.push(`<span class="meta-tag distill">${esc(c.distill)}</span>`);
+    if (c.award) tags.push(`<span class="meta-tag award">🏆 ${esc(c.award)}</span>`);
 
     const scoreColor = c.score >= 80 ? 'var(--gold)' : c.score >= 60 ? 'var(--teal)' : 'var(--text-dim)';
 
@@ -261,18 +268,18 @@ function recommend() {
     card.innerHTML = `
       <span class="card-number">${String(i+1).padStart(2,'0')}</span>
       <div class="cocktail-card-header">
-        <img class="cocktail-img" src="${imgUrl}" alt="${c.name}" loading="lazy">
+        <img class="cocktail-img" src="${esc(imgUrl)}" alt="${esc(c.name)}" loading="lazy">
         <div class="cocktail-card-info">
           <div class="match-score">
             <div class="score-bar"><div class="score-fill" style="width:${c.score}%;background:${scoreColor}"></div></div>
             <span class="score-label">${c.score}%</span>
           </div>
-          <h3 class="cocktail-name">${c.name}</h3>
-          <p class="cocktail-name-en">${c.nameEn}</p>
+          <h3 class="cocktail-name">${esc(c.name)}</h3>
+          <p class="cocktail-name-en">${esc(c.nameEn)}</p>
         </div>
       </div>
-      <p class="cocktail-desc" id="desc-${c.id}">${c.desc}</p>
-      ${c.desc.length > 80 ? `<button class="read-more" onclick="document.getElementById('desc-${c.id}').classList.toggle('expanded');this.textContent=this.textContent==='MORE →'?'LESS ←':'MORE →'">MORE →</button>` : ''}
+      <p class="cocktail-desc" id="desc-${esc(c.id)}">${esc(c.desc)}</p>
+      ${c.desc.length > 80 ? `<button class="read-more" onclick="document.getElementById('desc-${esc(c.id)}').classList.toggle('expanded');this.textContent=this.textContent==='MORE →'?'LESS ←':'MORE →'">MORE →</button>` : ''}
       <div class="cocktail-meta">${tags.join('')}</div>
       <div class="recipe-section">
         <div class="recipe-title">INGREDIENTS</div>
@@ -282,20 +289,20 @@ function recommend() {
           ${c.carbonated ? '<span class="volume-badge carbonated-badge">炭酸</span>' : ''}
         </div>
         <ul class="ingredient-list">
-          ${ingredients.map(ig => `<li><span class="ingredient-name">${ig.name}</span><span class="ingredient-amount">${ig.amount}</span></li>`).join('')}
+          ${ingredients.map(ig => `<li><span class="ingredient-name">${esc(ig.name)}</span><span class="ingredient-amount">${esc(ig.amount)}</span></li>`).join('')}
         </ul>
-        ${c.recipe ? `<div class="recipe-title">HOW TO MAKE</div><ol class="recipe-steps">${c.recipe.split(/[。;]/).filter(s => s.trim()).map(s => `<li>${s.trim()}</li>`).join('')}</ol>` : ''}
+        ${c.recipe ? `<div class="recipe-title">HOW TO MAKE</div><ol class="recipe-steps">${c.recipe.split(/[。;]/).filter(s => s.trim()).map(s => `<li>${esc(s.trim())}</li>`).join('')}</ol>` : ''}
         <div class="recipe-title" style="margin-top:16px">RECOMMENDED AWAMORI</div>
         <div class="cocktail-awamori-suggest">
           ${recommendAwamoriForCocktail(c, totalVol).map(a =>
             `<div class="suggest-item-detail">
               <div class="suggest-header">
-                <span class="suggest-brand">${a.url ? `<a href="${a.url}" target="_blank" rel="noopener">${a.brand}</a>` : a.brand}</span>
-                <span class="suggest-maker">${a.maker} / ${a.degree}度</span>
+                <span class="suggest-brand">${a.url ? `<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.brand)}</a>` : esc(a.brand)}</span>
+                <span class="suggest-maker">${esc(a.maker)} / ${a.degree}度</span>
               </div>
-              <div class="suggest-note">${a.note}</div>
+              <div class="suggest-note">${esc(a.note)}</div>
               <div class="suggest-alc">この泡盛で作ると推定アルコール度数: 約${a.estAlc}%</div>
-              ${a.kodawari ? `<div class="suggest-kodawari">${a.kodawari}</div>` : ''}
+              ${a.kodawari ? `<div class="suggest-kodawari">${esc(a.kodawari)}</div>` : ''}
             </div>`
           ).join('')}
         </div>
@@ -318,14 +325,14 @@ function recommend() {
     card.className = 'awamori-card';
     card.innerHTML = `
       <div class="awamori-info">
-        <div class="awamori-brand">${a.url ? `<a href="${a.url}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--gold-dim)">${a.brand}</a>` : a.brand}</div>
-        <div class="awamori-maker">${a.maker}</div>
-        <div class="awamori-detail">${a.note}</div>
-        ${a.kodawari ? `<div class="awamori-kodawari">${a.kodawari}</div>` : ''}
+        <div class="awamori-brand">${a.url ? `<a href="${esc(a.url)}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--gold-dim)">${esc(a.brand)}</a>` : esc(a.brand)}</div>
+        <div class="awamori-maker">${esc(a.maker)}</div>
+        <div class="awamori-detail">${esc(a.note)}</div>
+        ${a.kodawari ? `<div class="awamori-kodawari">${esc(a.kodawari)}</div>` : ''}
         <div class="awamori-tags">
-          <span class="awamori-tag">${a.distill}</span>
+          <span class="awamori-tag">${esc(a.distill)}</span>
           <span class="awamori-tag">${a.degree}度</span>
-          ${a.url ? `<a href="${a.url}" target="_blank" rel="noopener" class="awamori-tag awamori-link">公式サイト</a>` : ''}
+          ${a.url ? `<a href="${esc(a.url)}" target="_blank" rel="noopener" class="awamori-tag awamori-link">公式サイト</a>` : ''}
         </div>
       </div>
     `;
