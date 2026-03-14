@@ -6,7 +6,7 @@
 
 **デモ**: https://mokimonogakari.github.io/awamory-app/
 
-本アプリは [Awamori open data 3/14](https://ool.connpass.com/event/382912/) ハッカソンで制作されました。
+本アプリは [Awamori open data 3/14](https://ool.connpass.com/event/382912/) ハッカソンで制作されました。バーテンダーが泡盛を使ったカクテルの作り方や最適な銘柄を知ることで、泡盛の魅力を沖縄県内外、さらには海外にも広く普及させることを目指しています。
 
 ## 技術スタック
 
