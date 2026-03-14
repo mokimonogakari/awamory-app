@@ -66,24 +66,38 @@ const FOOD_DATA = [
 
 // === AWAMORI BRANDS ===
 const AWAMORI_BRANDS = [
-  {brand:"残波ホワイト 25度",maker:"比嘉酒造",distill:"減圧蒸留",degree:25,note:"フルーティーな香りとすっきりした飲み口"},
-  {brand:"残波ブラック 30度",maker:"比嘉酒造",distill:"減圧蒸留",degree:30,note:"黒麹のキリッとしたのど越し"},
-  {brand:"夢航海 30度",maker:"忠孝酒造",distill:"減圧蒸留",degree:30,note:"青リンゴのような爽やかな香り"},
-  {brand:"島唄 25度",maker:"まさひろ酒造",distill:"減圧蒸留",degree:25,note:"清酒酵母使用のフルーティー泡盛"},
-  {brand:"ender 25度",maker:"瑞穂酒造",distill:"減圧蒸留",degree:25,note:"日本酒のような吟醸香"},
-  {brand:"請福マリンボトル",maker:"請福酒造",distill:"減圧蒸留",degree:30,note:"泡盛初の減圧蒸留商品"},
-  {brand:"かりゆし 30度",maker:"新里酒造",distill:"減圧蒸留",degree:30,note:"沖縄最古の蔵元の減圧蒸留"},
-  {brand:"菊之露 akari",maker:"菊之露酒造",distill:"減圧蒸留",degree:25,note:"クリアで透明感のある味わい"},
-  {brand:"瑞泉 30度",maker:"瑞泉酒造",distill:"常圧蒸留",degree:30,note:"首里の老舗。1887年創業"},
-  {brand:"松藤 30度",maker:"崎山酒造廠",distill:"常圧蒸留",degree:30,note:"常圧蒸留のみ。旨味へのこだわり"},
-  {brand:"久米島の久米仙 30度",maker:"久米島の久米仙",distill:"常圧蒸留",degree:30,note:"全麹仕込み・常圧蒸留"},
-  {brand:"菊之露 30度",maker:"菊之露酒造",distill:"常圧蒸留",degree:30,note:"宮古島の硬水使用"},
-  {brand:"直火請福 30度",maker:"請福酒造",distill:"常圧蒸留",degree:30,note:"独自直火蒸留釜。香ばしい風味"},
-  {brand:"八重泉 30度",maker:"八重泉酒造",distill:"常圧蒸留",degree:30,note:"石垣島。直火蒸留にこだわる"},
-  {brand:"暖流 30度",maker:"神村酒造",distill:"常圧蒸留",degree:30,note:"ウイスキー樽熟成泡盛"},
-  {brand:"春雨 30度",maker:"宮里酒造所",distill:"常圧蒸留",degree:30,note:"少量生産の希少銘柄"},
-  {brand:"くら 3年古酒",maker:"ヘリオス酒造",distill:"常圧蒸留",degree:25,note:"銅製蒸留器・オーク樽熟成"},
-  {brand:"白百合 30度",maker:"池原酒造",distill:"常圧蒸留",degree:30,note:"個性的な風味で人気"},
-  {brand:"泡波 30度",maker:"波照間酒造所",distill:"常圧蒸留",degree:30,note:"幻の泡盛。極少生産"},
-  {brand:"残波プレミアム 5年古酒",maker:"比嘉酒造",distill:"常圧蒸留",degree:35,note:"100%甕貯蔵5年古酒"},
+  {brand:"残波ホワイト 25度",maker:"比嘉酒造",distill:"減圧蒸留",degree:25,note:"フルーティーな香りとすっきりした飲み口",url:"https://zanpa.okinawa/",kodawari:"1948年読谷村創業。「女性や泡盛を知らない方でも楽しめる泡盛」を目指して開発。沖縄県内外で広く親しまれる代表銘柄。"},
+  {brand:"残波ブラック 30度",maker:"比嘉酒造",distill:"減圧蒸留",degree:30,note:"黒麹のキリッとしたのど越し",url:"https://zanpa.okinawa/",kodawari:"1948年読谷村創業。「女性や泡盛を知らない方でも楽しめる泡盛」を目指して開発。沖縄県内外で広く親しまれる代表銘柄。"},
+  {brand:"夢航海 30度",maker:"忠孝酒造",distill:"減圧蒸留",degree:30,note:"青リンゴのような爽やかな香り",url:"https://www.chuko-awamori.com/",kodawari:"蔵元でありながら窯元でもある世界唯一の酒蔵。泡盛熟成用の南蛮荒焼甕を自社窯で製作し、伝統製法を再現。"},
+  {brand:"島唄 25度",maker:"まさひろ酒造",distill:"減圧蒸留",degree:25,note:"清酒酵母使用のフルーティー泡盛",url:"https://www.masahiro.co.jp/",kodawari:"1883年創業、140年超の歴史。清酒酵母を使用した減圧蒸留泡盛に古酒をブレンドした新しいスタイル。"},
+  {brand:"ender 25度",maker:"瑞穂酒造",distill:"減圧蒸留",degree:25,note:"日本酒のような吟醸香",url:"https://mizuhoshuzo.co.jp/",kodawari:"業界初の「天然吟香酵母」使用。商品名は沖縄方言で「やさしい人」を意味し、華やかな香りが特徴。"},
+  {brand:"請福マリンボトル",maker:"請福酒造",distill:"減圧蒸留",degree:30,note:"泡盛初の減圧蒸留商品",url:"https://www.seifuku.co.jp/",kodawari:"1949年石垣島創業。昔ながらの直火釜蒸留にこだわり、八重山の風土を活かした泡盛造り。"},
+  {brand:"かりゆし 30度",maker:"新里酒造",distill:"減圧蒸留",degree:30,note:"沖縄最古の蔵元の減圧蒸留",url:"https://shinzato-shuzo.co.jp/",kodawari:"沖縄最古の蔵元として175年の歴史。「かりゆし」は沖縄の言葉で「めでたい」を意味する。"},
+  {brand:"菊之露 akari",maker:"菊之露酒造",distill:"減圧蒸留",degree:25,note:"クリアで透明感のある味わい",url:"https://www.kikunotsuyu.co.jp/",kodawari:"宮古島の硬水（カルシウム・ミネラル豊富）を仕込み水に使用。「最高に楽しい瞬間をつくる」が使命。"},
+  {brand:"瑞泉 30度",maker:"瑞泉酒造",distill:"常圧蒸留",degree:30,note:"首里の老舗。1887年創業",url:"https://www.zuisen.co.jp/",kodawari:"1887年首里城下町で創業。戦禍を奇跡的に生き延びた戦前の黒麹菌を使い復活させた「御酒」は泡盛の源流。"},
+  {brand:"松藤 30度",maker:"崎山酒造廠",distill:"常圧蒸留",degree:30,note:"常圧蒸留のみ。旨味へのこだわり",url:"https://sakiyamashuzo.jp/",kodawari:"1905年創業。手間のかかる「三日麹」製法にこだわり、恩納岳の湧き水で仕込む。深いコクが特徴。"},
+  {brand:"久米島の久米仙 30度",maker:"久米島の久米仙",distill:"常圧蒸留",degree:30,note:"全麹仕込み・常圧蒸留",url:"https://www.k-kumesen.co.jp/",kodawari:"久米島の名水を使用。厳選した南方硬質米を用い、麹・もろみ造りは人の手で自然に近い状態で行う。"},
+  {brand:"菊之露 30度",maker:"菊之露酒造",distill:"常圧蒸留",degree:30,note:"宮古島の硬水使用",url:"https://www.kikunotsuyu.co.jp/",kodawari:"宮古島の硬水と黒麹菌の相性を活かした味わいが特徴。宮古島の代表的酒造所。"},
+  {brand:"直火請福 30度",maker:"請福酒造",distill:"常圧蒸留",degree:30,note:"独自直火蒸留釜。香ばしい風味",url:"https://www.seifuku.co.jp/",kodawari:"1949年石垣島創業。昔ながらの直火釜蒸留にこだわり、八重山の風土を活かした泡盛造り。"},
+  {brand:"八重泉 30度",maker:"八重泉酒造",distill:"常圧蒸留",degree:30,note:"石垣島。直火蒸留にこだわる",url:"https://yaesen.com/",kodawari:"1955年石垣島創業。伝統的な直火蒸留製法を守りつつ、長期樽貯蔵にも取り組む革新的な蔵元。"},
+  {brand:"暖流 30度",maker:"神村酒造",distill:"常圧蒸留",degree:30,note:"ウイスキー樽熟成泡盛",url:"https://kamimura-shuzo.co.jp/",kodawari:"明治15年創業。日本初のウィスキー樽貯蔵泡盛「暖流」を10年の研究開発を経て実現。琥珀色の泡盛。"},
+  {brand:"春雨 30度",maker:"宮里酒造所",distill:"常圧蒸留",degree:30,note:"少量生産の希少銘柄",url:"",kodawari:"1946年那覇市首里で創業。赤瓦屋根の小さな蔵で職人3名が手造りする希少な泡盛。伝説的な蔵元。"},
+  {brand:"くら 3年古酒",maker:"ヘリオス酒造",distill:"常圧蒸留",degree:25,note:"銅製蒸留器・オーク樽熟成",url:"https://www.helios-syuzo.co.jp/",kodawari:"1961年創業。「古酒くら」は34年以上のロングセラー。オーク樽で3年以上熟成させた琥珀色の古酒100%泡盛。"},
+  {brand:"白百合 30度",maker:"池原酒造",distill:"常圧蒸留",degree:30,note:"個性的な風味で人気",url:"https://www.shirayuri-ikehara.com/",kodawari:"1951年石垣島創業。古民家蔵で全工程手作業・天然醸造・直火釜蒸留。世界的レストラン「noma」にも採用。"},
+  {brand:"泡波 30度",maker:"波照間酒造所",distill:"常圧蒸留",degree:30,note:"幻の泡盛。極少生産",url:"http://awanami.net/",kodawari:"日本最南端・波照間島の小さな酒造所。製造量が極めて少なく「幻の泡盛」と呼ばれる入手困難な希少銘柄。"},
+  {brand:"残波プレミアム 5年古酒",maker:"比嘉酒造",distill:"常圧蒸留",degree:35,note:"100%甕貯蔵5年古酒",url:"https://zanpa.okinawa/",kodawari:"1948年読谷村創業。「女性や泡盛を知らない方でも楽しめる泡盛」を目指して開発。沖縄県内外で広く親しまれる代表銘柄。"},
 ];
+
+// === COCKTAIL IMAGES (Unsplash free) ===
+const COCKTAIL_IMAGES = {
+  short: [
+    "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=300&fit=crop&auto=format",
+    "https://images.unsplash.com/photo-1544320324-b3235e43b5cc?w=400&h=300&fit=crop&auto=format",
+    "https://images.unsplash.com/photo-1661002529725-5e55e8a58923?w=400&h=300&fit=crop&auto=format",
+  ],
+  long: [
+    "https://images.unsplash.com/photo-1587223962217-f4e4f399eca4?w=400&h=300&fit=crop&auto=format",
+    "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=400&h=300&fit=crop&auto=format",
+    "https://images.unsplash.com/photo-1745076437587-82cbb1e78ac3?w=400&h=300&fit=crop&auto=format",
+  ],
+};

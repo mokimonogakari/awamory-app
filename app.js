@@ -213,16 +213,25 @@ function recommend() {
 
     const scoreColor = c.score >= 80 ? 'var(--gold)' : c.score >= 60 ? 'var(--teal)' : 'var(--text-dim)';
 
+    // Select image based on category
+    const imgPool = c.category.includes("ショート") ? COCKTAIL_IMAGES.short : COCKTAIL_IMAGES.long;
+    const imgUrl = imgPool[i % imgPool.length];
+
     const card = document.createElement('div');
     card.className = 'cocktail-card stagger';
     card.innerHTML = `
       <span class="card-number">${String(i+1).padStart(2,'0')}</span>
-      <div class="match-score">
-        <div class="score-bar"><div class="score-fill" style="width:${c.score}%;background:${scoreColor}"></div></div>
-        <span class="score-label">${c.score}%</span>
+      <div class="cocktail-card-header">
+        <img class="cocktail-img" src="${imgUrl}" alt="${c.name}" loading="lazy">
+        <div class="cocktail-card-info">
+          <div class="match-score">
+            <div class="score-bar"><div class="score-fill" style="width:${c.score}%;background:${scoreColor}"></div></div>
+            <span class="score-label">${c.score}%</span>
+          </div>
+          <h3 class="cocktail-name">${c.name}</h3>
+          <p class="cocktail-name-en">${c.nameEn}</p>
+        </div>
       </div>
-      <h3 class="cocktail-name">${c.name}</h3>
-      <p class="cocktail-name-en">${c.nameEn}</p>
       <p class="cocktail-desc" id="desc-${c.id}">${c.desc}</p>
       ${c.desc.length > 80 ? `<button class="read-more" onclick="document.getElementById('desc-${c.id}').classList.toggle('expanded');this.textContent=this.textContent==='MORE →'?'LESS ←':'MORE →'">MORE →</button>` : ''}
       <div class="cocktail-meta">${tags.join('')}</div>
@@ -237,6 +246,19 @@ function recommend() {
           ${ingredients.map(ig => `<li><span class="ingredient-name">${ig.name}</span><span class="ingredient-amount">${ig.amount}</span></li>`).join('')}
         </ul>
         ${c.recipe ? `<div class="recipe-title">HOW TO MAKE</div><ol class="recipe-steps">${c.recipe.split(/[。;]/).filter(s => s.trim()).map(s => `<li>${s.trim()}</li>`).join('')}</ol>` : ''}
+        <div class="recipe-title" style="margin-top:16px">RECOMMENDED AWAMORI</div>
+        <div class="cocktail-awamori-suggest">
+          ${AWAMORI_BRANDS.filter(a => a.distill === c.distill).slice(0, 3).map(a =>
+            `<div class="suggest-item-detail">
+              <div class="suggest-header">
+                <span class="suggest-brand">${a.url ? `<a href="${a.url}" target="_blank" rel="noopener">${a.brand}</a>` : a.brand}</span>
+                <span class="suggest-maker">${a.maker} / ${a.degree}度</span>
+              </div>
+              <div class="suggest-note">${a.note}</div>
+              ${a.kodawari ? `<div class="suggest-kodawari">${a.kodawari}</div>` : ''}
+            </div>`
+          ).join('')}
+        </div>
       </div>
     `;
     list.appendChild(card);
@@ -256,12 +278,14 @@ function recommend() {
     card.className = 'awamori-card';
     card.innerHTML = `
       <div class="awamori-info">
-        <div class="awamori-brand">${a.brand}</div>
+        <div class="awamori-brand">${a.url ? `<a href="${a.url}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--gold-dim)">${a.brand}</a>` : a.brand}</div>
         <div class="awamori-maker">${a.maker}</div>
         <div class="awamori-detail">${a.note}</div>
+        ${a.kodawari ? `<div class="awamori-kodawari">${a.kodawari}</div>` : ''}
         <div class="awamori-tags">
           <span class="awamori-tag">${a.distill}</span>
           <span class="awamori-tag">${a.degree}度</span>
+          ${a.url ? `<a href="${a.url}" target="_blank" rel="noopener" class="awamori-tag awamori-link">公式サイト</a>` : ''}
         </div>
       </div>
     `;
